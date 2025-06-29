@@ -1,5 +1,5 @@
 # MY_SQL_PRACTICE
-I’ve been learning SQL for two weeks. This folder is dedicated to collecting the projects I’ve worked on and tracking my progress in SQL practice. I’m open to any feedback or suggestions for improvement.
+I’ve been learning SQL for two weeks. This folder is dedicated to collecting the projects I’ve worked on and tracking my progress in SQL practice. I’m open to any feedback or suggestions for improvement
 
 CREATE TABLE Doctor (
 	doc_id INT PRIMARY KEY,
@@ -56,7 +56,7 @@ VALUES (1,	2001, 101,	'2025-06-10',	'Illness'),
 
 -- Q&A 
 
--- What is the number of patients per doctor this month?
+-- What is the number of patients per doctor this month
 SELECT doc.doc_id, doc.first_name, doc.speciallist, count(erp.hn)
 FROM doctor AS doc
 RIGHT JOIN (
@@ -69,7 +69,7 @@ ON doc.doc_id = erp.doc_id
 GROUP BY doc.doc_id
 ;
 
--- Summary of the dataset for patients who visited the hospital in June. 
+-- Summary of the dataset for patients who visited the hospital in June
 SELECT doc.doc_id,
 		doc.first_name AS Doctor, 
         doc.speciallist, 

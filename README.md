@@ -52,3 +52,37 @@ VALUES (1,	2001, 101,	'2025-06-10',	'Illness'),
 		(4,	2004, 102,	'2025-06-22',	'Accident'),
 		(5,	2005, 101,	'2025-06-23',	'Illness'),
 		(6,	2006, 102,	'2025-06-25',	'Accident');
+
+
+-- Q&A 
+
+-- What is the number of patients per doctor this month?
+SELECT doc.doc_id, doc.first_name, doc.speciallist, count(erp.hn)
+FROM doctor AS doc
+RIGHT JOIN (
+			SELECT er1.hn, er1.doc_id, er1.type,p.first_name, p.age, p.gender
+            FROM er_room AS er1
+            JOIN patient AS p
+            ON er1.hn = p.hn 
+			) AS erp
+ON doc.doc_id = erp.doc_id
+GROUP BY doc.doc_id
+;
+
+-- Summary of the dataset for patients who visited the hospital in June. 
+SELECT doc.doc_id,
+		doc.first_name AS Doctor, 
+        doc.speciallist, 
+        erp.type , 
+        erp.first_name AS patient, 
+        erp.age, 
+        erp.gender
+FROM doctor AS doc
+RIGHT JOIN (
+			SELECT er1.hn, er1.doc_id, er1.type,p.first_name, p.age, p.gender
+            FROM er_room AS er1
+            JOIN patient AS p
+            ON er1.hn = p.hn 
+			) AS erp
+ON doc.doc_id = erp.doc_id
+;
